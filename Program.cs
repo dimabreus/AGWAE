@@ -17,6 +17,8 @@ class Program
         window.KeyPressed += (sender, e) => pressedKeys.Add(e.Code);
         window.KeyReleased += (sender, e) => pressedKeys.Remove(e.Code);
         window.MouseButtonPressed += (sender, e) => SceneManager.CurrentScene.HandleClick(e);
+        window.MouseButtonReleased += (sender, e) => SceneManager.CurrentScene.HandleClickRelease(e);
+        window.MouseMoved += (sender, e) => SceneManager.CurrentScene.HandleMouseMoved(e);
 
         Time.Update();
 
