@@ -1,4 +1,5 @@
-﻿using SFML.Window;
+﻿using SFML.Graphics;
+using SFML.Window;
 using System.Numerics;
 
 namespace AGWAE.Scenes
@@ -38,31 +39,7 @@ namespace AGWAE.Scenes
                 () => new ColliderObject(Vector2.Zero, Vector2.One * 5, Layer.Ground, new(Sprites.SingleBoth))
                 ];
 
-            Tilemap tilemap = new(tilemapObjects, new(0, 250));
-
-            tilemap.SetAt(0, 0, 6);
-            tilemap.SetAt(1, 0, 8);
-            tilemap.SetAt(0, 1, 6);
-            tilemap.SetAt(1, 1, 8);
-            tilemap.SetAt(0, 2, 6);
-            tilemap.SetAt(1, 2, 8);
-            tilemap.SetAt(0, 3, 6);
-            tilemap.SetAt(1, 3, 8);
-
-            tilemap.SetAt(0, 4, 6);
-            tilemap.SetAt(1, 4, 7);
-            tilemap.SetAt(2, 4, 13);
-
-            tilemap.SetAt(0, 5, 6);
-            tilemap.SetAt(1, 5, 7);
-            tilemap.SetAt(2, 5, 17);
-
-            tilemap.SetAt(3, 5, 4);
-            tilemap.SetAt(4, 5, 4);
-            tilemap.SetAt(5, 5, 4);
-            tilemap.SetAt(6, 5, 4);
-            tilemap.SetAt(7, 5, 4);
-
+            Tilemap tilemap = new(tilemapObjects, "C:\\Users\\Aboba\\Desktop\\level.json");
 
             GameObjects =
             [

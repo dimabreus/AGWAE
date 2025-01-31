@@ -1,4 +1,5 @@
-﻿using AGWAE.Scenes;
+﻿using AGWAE.Editor;
+using AGWAE.Scenes;
 
 namespace AGWAE
 {
@@ -6,6 +7,7 @@ namespace AGWAE
     {
         private static readonly List<Func<Scene>> scenes =
         [
+            () => new SBuilderScene(),
             () => new SMainMenu(),
             () => new SGameScene()
         ];
