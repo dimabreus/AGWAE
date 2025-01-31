@@ -6,7 +6,6 @@ namespace AGWAE
     internal abstract class GameScene : Scene
     {
         protected abstract List<GameObject> GameObjects { get; }
-        protected abstract Camera Camera { get; }
 
         public override void Start()
         {
@@ -30,9 +29,11 @@ namespace AGWAE
         {
             foreach (var gameObject in GameObjects)
             {
-                Camera.Draw(window, gameObject);
+                Draw(window, gameObject);
             }
         }
+
+        public abstract void Draw(RenderWindow window, GameObject gameObject);
 
         public override void HandleClick(MouseButtonEventArgs e)
         {

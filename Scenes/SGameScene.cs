@@ -6,7 +6,7 @@ namespace AGWAE.Scenes
     internal class SGameScene : GameScene
     {
         public override string Name { get; protected set; } = "Game!";
-        protected override Camera Camera { get; }
+        protected Camera Camera { get; }
         protected override List<GameObject> GameObjects { get; }
 
         private readonly RigidbodyObject player = new(new(500, 0), new(10, 10), Layer.Player, new(new SFML.Graphics.Texture("Assets/snowflake.png"))) { Mass = 10f };
@@ -93,6 +93,11 @@ namespace AGWAE.Scenes
                 SceneManager.LoadScene(SceneManager.CurrentSceneId);
 
             //player.Velocity = new Vector2(Math.Clamp(player.Velocity.X, -speed * 1000, speed * 1000), player.Velocity.Y);
+        }
+
+        public override void Draw(RenderWindow window, GameObject gameObject)
+        {
+            Camera.Draw(window, gameObject);
         }
     }
 }

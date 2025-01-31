@@ -5,7 +5,7 @@ namespace AGWAE.Scenes
 {
     internal class SMainMenu : GameScene
     {
-        protected override Camera Camera { get; }
+        protected Camera Camera { get; }
         protected override List<GameObject> GameObjects { get; }
         public override string Name { get; protected set; } = "MainMenu";
 
@@ -22,6 +22,11 @@ namespace AGWAE.Scenes
 
             GameObjects = [startButton, quitButton];
             Camera = new Camera(new GameObject(new(0, 0), Layer.Ground, new Sprite()));
+        }
+
+        public override void Draw(RenderWindow window, GameObject gameObject)
+        {
+            Camera.Draw(window, gameObject);
         }
     }
 }
