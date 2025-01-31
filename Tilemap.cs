@@ -35,13 +35,19 @@ namespace AGWAE
         {
             Vector2 key = new(x, y);
 
-            GameObjects.Remove(key);
-
             GameObject gameObject = gameObjectVariants[gameObjectVariant]();
             gameObject.Position = position + new Vector2(x, y) * gameObject.Size;
 
             GameObjects[key] = gameObject;
             Grid[key] = gameObjectVariant;
+        }
+
+        public void RemoveAt(int x, int y)
+        {
+            Vector2 key = new(x, y);
+
+            GameObjects.Remove(key);
+            Grid.Remove(key);
         }
 
         public void Export(string filePath)
