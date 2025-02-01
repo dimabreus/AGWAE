@@ -13,6 +13,7 @@ namespace AGWAE
         public virtual void HandleClick(MouseButtonEventArgs e) { }
         public virtual void HandleClickRelease(MouseButtonEventArgs e) { }
         public virtual void HandleMouseMoved(MouseMoveEventArgs e) { }
+        public virtual void HandleMouseWheelScrolled(MouseWheelScrollEventArgs e) { }
         public abstract void Draw(RenderWindow window);
     }
 }

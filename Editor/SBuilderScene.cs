@@ -28,7 +28,9 @@ namespace AGWAE.Editor
         private bool isEraserKeyPressed = false;
         private int previousSpriteId = 0;
 
-        private List<Func<GameObject>> tilemapGameObjects;
+        private readonly List<Func<GameObject>> tilemapGameObjects;
+
+        private float currentZoomIn = 1f;
 
         public SBuilderScene()
         {
@@ -146,6 +148,13 @@ namespace AGWAE.Editor
             }
         }
 
+        public override void HandleMouseWheelScrolled(MouseWheelScrollEventArgs e)
+        {
+            base.HandleMouseWheelScrolled(e);
+
+            currentZoomIn += GetScrollIncrease() * e.Delta;
+        }
+
         public override void Draw(RenderWindow window, GameObject gameObject)
         {
             if (gameObject is UIObject)
@@ -155,7 +164,8 @@ namespace AGWAE.Editor
                 return;
             }
 
-            gameObject.Draw(window, gameObject.Position + totalOffset + currentOffset);
+            gameObject.Scale = Vector2.One * 5 * currentZoomIn;
+            gameObject.Draw(window, gameObject.Position * currentZoomIn + totalOffset + currentOffset);
         }
 
         public override void Draw(RenderWindow window)
@@ -164,6 +174,11 @@ namespace AGWAE.Editor
 
             DrawCenter(window);
             DrawOutlineSelected(window);
+        }
+
+        private float GetScrollIncrease()
+        {
+            return currentZoomIn / 5;
         }
 
         private void ContinuePlacing(int x, int y)
@@ -257,7 +272,7 @@ namespace AGWAE.Editor
 
         private Vector2i GetBlocksCoords(int x, int y)
         {
-            Vector2 actualCoords = new Vector2(x, y) - totalOffset - currentOffset;
+            Vector2 actualCoords = (new Vector2(x, y) - totalOffset - currentOffset) / currentZoomIn;
 
             Vector2 coords = new(actualCoords.X / spriteSize.X, actualCoords.Y / spriteSize.Y);
 

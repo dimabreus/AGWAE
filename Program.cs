@@ -19,6 +19,7 @@ class Program
         window.MouseButtonPressed += (sender, e) => SceneManager.CurrentScene.HandleClick(e);
         window.MouseButtonReleased += (sender, e) => SceneManager.CurrentScene.HandleClickRelease(e);
         window.MouseMoved += (sender, e) => SceneManager.CurrentScene.HandleMouseMoved(e);
+        window.MouseWheelScrolled += (sender, e) => SceneManager.CurrentScene.HandleMouseWheelScrolled(e);
 
         Time.Update();
 
