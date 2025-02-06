@@ -5,10 +5,11 @@ using SFML.Window;
 class Program
 {
     private static readonly HashSet<Keyboard.Key> pressedKeys = [];
+    private static RenderWindow? window;
 
     private static void Main()
     {
-        var window = new RenderWindow(new VideoMode(Config.WINDOW_SIZE_X, Config.WINDOW_SIZE_Y), Config.WINDOW_TITLE);
+        window = new RenderWindow(new VideoMode(Config.WINDOW_SIZE_X, Config.WINDOW_SIZE_Y), Config.WINDOW_TITLE);
 
         window.Closed += (sender, e) => window.Close();
         App.Closed += window.Close;
@@ -20,6 +21,7 @@ class Program
         window.MouseButtonReleased += (sender, e) => SceneManager.CurrentScene.HandleClickRelease(e);
         window.MouseMoved += (sender, e) => SceneManager.CurrentScene.HandleMouseMoved(e);
         window.MouseWheelScrolled += (sender, e) => SceneManager.CurrentScene.HandleMouseWheelScrolled(e);
+        window.Resized += (sender, e) => HandleWindowResize(e);
 
         Time.Update();
 
@@ -36,5 +38,10 @@ class Program
             window.Display();
         }
 
+    }
+
+    private static void HandleWindowResize(SizeEventArgs e)
+    {
+        window?.SetView(new View(new FloatRect(0, 0, e.Width, e.Height)));
     }
 }
